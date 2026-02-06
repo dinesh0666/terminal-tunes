@@ -1,0 +1,16 @@
+{
+  "id": "jazz-cafe",
+  "name": "Jazz Café",
+  "description": "Smooth jazz for coffee and contemplation",
+  "category": "Jazz",
+  "tracks": [
+    "Smooth Jazz",
+    "Coffee Shop Jazz",
+    "Late Night Jazz"
+  ],
+  "youtubeQueries": [
+    "smooth jazz mix",
+    "coffee shop jazz",
+    "evening jazz"
+  ]
+}

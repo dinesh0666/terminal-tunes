@@ -1,0 +1,16 @@
+{
+  "id": "indie-discoveries",
+  "name": "Indie Discoveries",
+  "description": "Hidden gems from indie artists",
+  "category": "Indie",
+  "tracks": [
+    "Indie Folk Mix",
+    "Alternative Indie",
+    "Indie Rock Playlist"
+  ],
+  "youtubeQueries": [
+    "indie music mix",
+    "indie folk playlist",
+    "indie rock 2024"
+  ]
+}

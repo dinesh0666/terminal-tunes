@@ -1,0 +1,16 @@
+{
+  "id": "chill-vibes",
+  "name": "Chill Vibes",
+  "description": "Relaxing tracks for focus and calm",
+  "category": "Ambient",
+  "tracks": [
+    "Chillhop Music - Lofi Hip Hop Mix",
+    "Peaceful Piano - Spotify",
+    "Deep Focus - Spotify"
+  ],
+  "youtubeQueries": [
+    "lofi hip hop radio",
+    "ambient study music",
+    "peaceful piano music"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "coding-zone",
+  "name": "Coding Zone",
+  "description": "Perfect background music for programming",
+  "category": "Focus",
+  "tracks": [
+    "Synthwave Mix",
+    "Electronic Focus",
+    "Cyberpunk Coding Music"
+  ],
+  "youtubeQueries": [
+    "synthwave mix",
+    "coding music mix",
+    "cyberpunk mix"
+  ]
+}

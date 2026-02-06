@@ -1,0 +1,16 @@
+{
+  "id": "workout-energy",
+  "name": "Workout Energy",
+  "description": "High-energy tracks to keep you moving",
+  "category": "Energy",
+  "tracks": [
+    "Workout Mix",
+    "EDM Gym Music",
+    "Running Playlist"
+  ],
+  "youtubeQueries": [
+    "workout mix",
+    "gym music mix",
+    "edm workout"
+  ]
+}

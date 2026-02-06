@@ -1,0 +1,53 @@
+{
+  "name": "terminal-tunes",
+  "version": "1.0.0",
+  "description": "A beautiful CLI music player with real-time audio visualizations, YouTube integration, and ad-free curated playlists",
+  "main": "src/index.js",
+  "bin": {
+    "terminal-tunes": "./bin/terminal-tunes.js",
+    "tt": "./bin/terminal-tunes.js"
+  },
+  "scripts": {
+    "start": "node bin/terminal-tunes.js",
+    "dev": "node --watch bin/terminal-tunes.js",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "cli",
+    "music",
+    "player",
+    "terminal",
+    "visualization",
+    "audio"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dinesh0666/terminal-tunes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dinesh0666/terminal-tunes/issues"
+  },
+  "homepage": "https://github.com/dinesh0666/terminal-tunes#readme",
+  "dependencies": {
+    "@discordjs/opus": "^0.9.0",
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.11.0",
+    "boxen": "^5.1.2",
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "fft-js": "^0.0.12",
+    "fluent-ffmpeg": "^2.1.3",
+    "fs-extra": "^11.2.0",
+    "music-metadata": "^8.1.4",
+    "ora": "^5.4.1",
+    "play-sound": "^1.1.6",
+    "youtube-search-api": "^1.2.1",
+    "ytdl-core": "^4.11.5"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
