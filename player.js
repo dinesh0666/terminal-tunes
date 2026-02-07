@@ -36,6 +36,7 @@ class Player extends EventEmitter {
     // Audio process management
     this.audioProcess = null;
     this.audioPid = null;
+    this.ipcSocket = `/tmp/terminal-tunes-${process.pid}.sock`;
     
     // Intervals
     this.visualizationInterval = null;
@@ -108,6 +109,13 @@ class Player extends EventEmitter {
     for (const cmd of killCommands) {
       try { execSync(cmd); } catch (e) { /* Best-effort, ignore errors */ }
     }
+    
+    // Clean up IPC socket
+    try {
+      if (fs.existsSync(this.ipcSocket)) {
+        fs.unlinkSync(this.ipcSocket);
+      }
+    } catch (e) { /* Ignore */ }
   }
 
   // ==================== PLAYBACK CONTROL ====================
@@ -194,18 +202,16 @@ class Player extends EventEmitter {
    * @returns {ChildProcess}
    */
   _spawnAudioProcess() {
-    if (this.currentTrack.stream) {
-      return spawn('mpv', [
-        '--no-video',
-        '--really-quiet',
-        `--volume=${this.volume}`,
-        '--ao=coreaudio',
-        this.currentTrack.path
-      ]);
-    } else {
-      const normalizedVol = (this.volume / 100).toFixed(2);
-      return spawn('afplay', ['-v', normalizedVol, this.currentTrack.path]);
-    }
+    // Use mpv for all playback (both streams and local files)
+    // This allows dynamic volume control via IPC
+    return spawn('mpv', [
+      '--no-video',
+      '--really-quiet',
+      `--volume=${this.volume}`,
+      '--ao=coreaudio',
+      `--input-ipc-server=${this.ipcSocket}`,
+      this.currentTrack.path
+    ]);
   }
 
   /**
@@ -337,10 +343,22 @@ class Player extends EventEmitter {
     this.volume = Math.max(0, Math.min(100, level));
     this.emit('volume', this.volume);
     
-    // Restart if playing to apply volume
-    if (this.isPlaying) {
-      this.isVolumeChange = true;
-      this.play();
+    // If playing, send volume command to mpv via IPC
+    if (this.isPlaying && this.audioProcess && fs.existsSync(this.ipcSocket)) {
+      try {
+        // Send volume command to mpv via IPC socket
+        const cmd = JSON.stringify({ command: ['set_property', 'volume', this.volume] }) + '\n';
+        const net = require('net');
+        const client = net.createConnection(this.ipcSocket, () => {
+          client.write(cmd);
+          client.end();
+        });
+        client.on('error', () => {
+          // If IPC fails, ignore - volume will be applied on next track
+        });
+      } catch (err) {
+        // Ignore IPC errors
+      }
     }
   }
 
@@ -415,14 +433,41 @@ class Player extends EventEmitter {
       let videoDuration = 0;
       
       console.log('📡 Fetching video information...');
+      // Emit loading state for UI
+      this.emit('streamLoading', { url: filePath });
+      
       try {
-        const { stdout } = await exec(`yt-dlp --dump-json --no-playlist "${filePath}"`);
+        // Add timeout to prevent hanging
+        const execWithTimeout = (cmd, timeout = 15000) => {
+          return Promise.race([
+            exec(cmd),
+            new Promise((_, reject) => 
+              setTimeout(() => reject(new Error('Request timed out')), timeout)
+            )
+          ]);
+        };
+        
+        const { stdout } = await execWithTimeout(
+          `yt-dlp --dump-json --no-playlist "${filePath}"`,
+          15000
+        );
         const metadata = JSON.parse(stdout);
         videoTitle = metadata.title || filePath;
         videoDuration = metadata.duration || 0;
         console.log(`✓ Found: ${videoTitle} (${Math.floor(videoDuration / 60)}:${String(Math.floor(videoDuration % 60)).padStart(2, '0')})`);
       } catch (e) {
         console.error('Could not fetch video metadata:', e.message);
+        // Emit network error for UI to handle
+        this.emit('networkError', {
+          message: 'Failed to load stream',
+          reason: e.message.includes('timed out') 
+            ? 'Network timeout - Check your internet connection' 
+            : e.message.includes('not found') || e.message.includes('unavailable')
+            ? 'Video unavailable or removed'
+            : 'Could not connect to streaming service',
+          url: filePath
+        });
+        throw new Error(`Network error: ${e.message}`);
       }
       
       this.playlist = [{

@@ -199,6 +199,10 @@ class UI {
       this.showNetworkError(error);
     });
 
+    this.player.on('networkError', (error) => {
+      this.showNetworkError(error);
+    });
+
     this.player.on('play', (track) => {
       // Clear loading animations first
       if (this.loadingInterval) {
