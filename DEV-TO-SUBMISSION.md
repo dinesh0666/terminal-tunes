@@ -27,12 +27,7 @@ The player features a beautiful terminal UI built with blessed and blessed-contr
 
 ### Video Demo
 
-![Terminal Tunes Demo](https://github.com/dinesh0666/terminal-tunes/raw/main/demo.gif)
-
-<!-- Or for MP4 video: -->
-<!-- 
-https://github.com/dinesh0666/terminal-tunes/assets/YOUR_USER_ID/YOUR_ASSET_ID.mp4
--->
+![Terminal Tunes Demo](https://github.com/dinesh0666/terminal-tunes/raw/main/demo.gif?raw=true)
 
 ### Screenshots
 
