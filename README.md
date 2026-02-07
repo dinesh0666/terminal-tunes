@@ -18,10 +18,14 @@ A beautiful CLI music player with real-time audio visualizations, YouTube stream
     ╚═╝    ╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝                         
 ```
 
+## 🎬 Demo
+
+![Terminal Tunes Demo](https://github.com/dinesh0666/terminal-tunes/raw/main/demo.gif)
+
 ## ✨ Features
 
 - 🎨 **Beautiful Spectrum Visualizer** - Real-time audio visualization with colorful bars
-- 🎬 **YouTube Streaming** - Stream music directly from YouTube URLs
+- 🎬 **YouTube Streaming** - Stream music directly from YouTube URLs with loading animations
 - 📁 **Local Playback** - Play your local MP3 files and folders
 - ⏯️  **Full Playback Control** - Play, pause, next, previous, volume control
 - 📊 **Progress Tracking** - Real-time progress with duration display
@@ -29,7 +33,8 @@ A beautiful CLI music player with real-time audio visualizations, YouTube stream
 - 💾 **Custom Playlists** - Create playlists mixing local files and YouTube URLs
 - 📝 **Playlist Management** - Save, load, and manage your playlists
 - 🔀 **Shuffle & Repeat** - Shuffle and repeat modes
-- 🎚️  **Volume Control** - Adjust volume on the fly
+- 🎚️  **Dynamic Volume Control** - Adjust volume instantly without interrupting playback
+- 🌐 **Network Error Handling** - Smart timeout and animated error displays for connectivity issues
 
 ## 📋 Requirements
 

@@ -11,12 +11,13 @@ tags: devchallenge, githubchallenge, cli, githubcopilot
 **Terminal Tunes** - A feature-rich CLI music player that brings the joy of music to your terminal with:
 
 - 🎨 **Real-time Audio Spectrum Visualizer** - Colorful frequency bars that dance to your music
-- 🎬 **YouTube Streaming** - Stream music directly from YouTube URLs and playlists
+- 🎬 **YouTube Streaming** - Stream music directly from YouTube URLs and playlists with smart loading animations
 - 📁 **Local File Playback** - Play MP3, M4A, WAV, FLAC files and entire folders
 - 💾 **Smart Playlists** - Create custom playlists mixing local files and YouTube URLs
 - 📊 **Live Progress Tracking** - Real-time progress bars with actual duration
-- 🎚️ **Volume Control** - Adjust volume on the fly with visual feedback
+- 🎚️ **Dynamic Volume Control** - Adjust volume instantly using mpv IPC without interrupting playback
 - 🔀 **Shuffle & Repeat** - Full playback control with keyboard shortcuts
+- 🌐 **Network Error Handling** - 15-second timeout with animated error displays for offline/connectivity issues
 
 The player features a beautiful terminal UI built with blessed and blessed-contrib, providing a Spotify-like experience right in your terminal.
 
