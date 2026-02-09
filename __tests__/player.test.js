@@ -2,7 +2,7 @@
  * Player Module Tests
  */
 
-const Player = require('../src/player');
+const Player = require('../player');
 const fs = require('fs-extra');
 
 describe('Player', () => {
