@@ -7,11 +7,22 @@
     "terminal-tunes": "./bin/terminal-tunes.js",
     "tt": "./bin/terminal-tunes.js"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "player.js",
+    "data/curated/",
+    "data/playlists/.gitkeep",
+    "data/youtube/.gitkeep",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "start": "node bin/terminal-tunes.js",
     "dev": "node --watch bin/terminal-tunes.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prepublishOnly": "npm test"
   },
   "keywords": [
     "cli",
@@ -19,9 +30,16 @@
     "player",
     "terminal",
     "visualization",
-    "audio"
+    "audio",
+    "youtube",
+    "mp3",
+    "sound",
+    "streaming",
+    "playlist",
+    "cli-app",
+    "terminal-app"
   ],
-  "author": "Your Name",
+  "author": "dinesh0666",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -46,6 +64,9 @@
     "play-sound": "^1.1.6",
     "youtube-search-api": "^1.2.1",
     "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   },
   "engines": {
     "node": ">=16.0.0"
